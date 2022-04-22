@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+   {% load static %}
+   <link rel="preconnect" href="https://fonts.gstatic.com">
+   <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet">
+   <link rel="stylesheet" href="/redirect?Id=bPkSKQqMZ9erlLi6p21Q4A%3d%3d" static 'css/bootstrap.min.css' %}" type="text/css">
+   <link rel="preconnect" href="https://fonts.gstatic.com">
+   <link href="https://fonts.googleapis.com/css2?family=Karla&display=swap" rel="stylesheet">
+   <style>
+      body {
+         font-family: 'Karla', sans-serif;
+      }
+   </style>
+   <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+    <div class="d-flex justify-content-center align-items-center flex-column"  style="height: 80vh;">
+        <div class="shadow-sm p-5">
+            <h1 class="mb-4">Đăng ký</h1>
+            <form method="POST" class=".was-validated">
+                {% csrf_token %}
+                {% for key, value in form.errors.items %}
+                {{value}}
+                {% endfor %}
+                <div class="mb-4"> <h5>Tài khoản: </h5>
+                    <div>
+                        {{form.username}}
+                    </div>
+                </div>
+                <div class="mb-4"> <h5>Mật khẩu: </h5>
+                    <div>
+                        {{form.password}}
+                    </div>
+                </div>
+                <div class="mb-4"> <h5>Ngày sinh: </h5>
+                    <div>
+                        {{form.birthday}}
+                    </div>
+                </div>
+                <div class="mb-4"> <h5>Tuổi: </h5>
+                    <div>
+                        {{form.age}}
+                    </div>
+                </div>
+                <div class="mb-4"> <h5>Địa chỉ: </h5>
+                    <div>
+                        {{form.address}}
+                    </div>
+                </div>
+                <div class="mb-4"> <h5>Tên: </h5>
+                    <div>
+                        {{form.last_name}}
+                    </div>
+                </div>
+                <div class="mb-4"> <h5>Họ: </h5>
+                    <div>
+                        {{form.first_name}}
+                    </div>
+                </div>
+                <input type="hidden" name="next" value="/"/>
+                <input class = "btn btn-primary" type="submit" value="Đăng ký"/>
+            </form>
+    
+        </div>
+    
+    
+    </div>
+</body>
+</html>

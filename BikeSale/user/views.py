@@ -11,46 +11,50 @@ def create_user(request):
     if request.method == 'POST':
         form = CreateUserForm(request.POST)
         if form.is_valid():
-            form.role = 1
-            publish = form.save()
+            publish = form.save(commit=False)
+            publish.role = 1
             publish.save()
             return HttpResponseRedirect('/')
-    return render(request, 'link page register', {'form':form})
+    return render(request, 'user/register.html', {'form':form})
 
 def update_user(request, id):
     user_info = Users.objects.get(id=id)
     form = UpdateUserForm(instance=user_info)
-    if request.method == 'PUT':
-        form = UpdateUserForm(request.PUT, instance=user_info)
+    if request.method == 'POST':
+        form = UpdateUserForm(request.POST, instance=user_info)
         if form.is_valid():
             form.save()
             return HttpResponseRedirect('/')
-    return render(request, 'link page update info', {'form': form})
+    return render(request, 'user/register.html', {'form':form})
+
+def get_user(request, id):
+    user_info = Users.objects.get(id=id)
+    return render(request, 'user/user_info.html', {'Data':user_info})
 
 def admin_get_user(request):
     users = Users.objects.all()
-    return render(request, 'admin get list user', {'Data': users})
+    return render(request, 'user/user_list.html', {'Data': users})
 
 def create_admin(request):
     form = CreateUserForm()
     if request.method == 'POST':
         form = CreateUserForm(request.POST)
         if form.is_valid():
-            form.role = 0
-            publish = form.save()
+            publish = form.save(commit=False)
+            publish.role = 0
             publish.save()
             return HttpResponseRedirect('/')
-    return render(request, 'link page register', {'form':form})
+    return render(request, 'user/register.html', {'form':form})
 
 def update_admin(request, id):
     admin_info = Users.objects.get(id=id)
     form = UpdateUserForm(instance=admin_info)
-    if request.method == 'PUT':
-        form = UpdateUserForm(request.PUT, instance=admin_info)
+    if request.method == 'POST':
+        form = UpdateUserForm(request.POST, instance=admin_info)
         if form.is_valid():
             form.save()
             return HttpResponseRedirect('/')
-    return render(request, 'link page update info', {'form': form})
+    return render(request, 'user/register.html', {'form': form})
 
 def admin_delete(request, id):
     user_delete = Users.objects.get(id=id)
